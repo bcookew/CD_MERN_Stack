@@ -13,30 +13,26 @@ function partition (array, pivot) {
             array[j] = temp;
         }
     }
-    console.log(array);
+    // console.log(array);
     return j;
 }
-function randPivot (array) {
-    return Math.floor(Math.random() * array.length);
+function randPivot (min,max) {
+    return Math.floor(Math.random() * (max-min)+min);
 } 
 
 function quicksort(array, i = 0, j = array.length - 1) {
-    // console.log(array);
-    // console.log(array.length);
-    if(array.length > 1) {
-        console.log("Pre-Partition");
-        let pivot = partition(array, array[randPivot(array)]);
-        console.log("Post-Partition");
-        if(i < pivot - 1) {
-            console.log("i Recursive\ni     =", i,"\nPivot =",pivot);
-            quicksort(array, i, pivot - 1);
-        }
-        if(pivot < j) {
-            console.log("j Recursive");
-            quicksort(array, pivot, j);
-        }
+    console.log(array);
+    if(i >= j) {
+        return;
     }
-    return array;
+    let pivot = partition(array, array[randPivot(i,j)]);
+    console.log("Pivot:",pivot);
+    if(i < pivot - 1) {
+        quicksort(array, i, pivot - 1);
+    }
+    if(pivot < j) {
+        quicksort(array, pivot + 1, j);
+    }
 }
 // console.log(arr[randPivot(arr)]);
 console.log(quicksort(arr));
