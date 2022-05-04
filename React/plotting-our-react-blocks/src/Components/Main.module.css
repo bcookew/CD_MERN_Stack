@@ -1,0 +1,12 @@
+.Main {
+    box-sizing: border-box;
+    flex-grow: 1;
+    min-height: 400px;
+    background-color: #e06666;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+

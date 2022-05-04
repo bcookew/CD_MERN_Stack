@@ -1,0 +1,7 @@
+.Advertisement {
+    width: calc(100% - 2rem);
+    min-height: 150px;
+    background-color: #b4a7d6;
+    margin-top: 1rem;
+}
+

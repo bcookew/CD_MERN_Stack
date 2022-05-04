@@ -1,0 +1,6 @@
+.SubContent {
+    width: calc((100% / 3) - 1.25rem);
+    min-height: 400px;
+    background-color: #ffd966;
+}
+
