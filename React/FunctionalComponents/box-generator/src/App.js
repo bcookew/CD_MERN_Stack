@@ -4,17 +4,17 @@ import Display from './Components/Display';
 import Form from './Components/Form';
 
 function App() {
-  const [colors, setColors] = useState([]);
-  const addColors = (newColor) => {
-    setColors([...colors, newColor]);
+  const [boxes, setBoxes] = useState([]);
+  const addBoxes = (newBox) => {
+    setBoxes([...boxes, newBox]);
   }
   return (
     <div className="App">
       <div className="row justify-content-center">
-        <Form addColors={addColors} />
+        <Form addColors={addBoxes} />
       </div>
       <div className="row justify-content-center">
-        <Display colorsList={colors} />
+        <Display boxList={boxes} />
       </div>
     </div>
   );
