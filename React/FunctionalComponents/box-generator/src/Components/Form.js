@@ -8,7 +8,6 @@ const Form = props => {
     const sizeHandler = e => {setSize(e.target.value)}
     const submit = (e) => {
         e.preventDefault();
-        console.log(e);
         colorsList.includes(color) ? props.addColors([color,size]) : alert("color not in colors list");
         e.target[0].value = "";
         e.target[1].value = "";

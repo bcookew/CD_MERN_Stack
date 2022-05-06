@@ -6,7 +6,6 @@ const Box = props => {
         height: props.size+"px",
         backgroundColor:props.color
     }
-    console.log(style.height);
     return (
         <div className="m-2" style={style}></div>
     )
