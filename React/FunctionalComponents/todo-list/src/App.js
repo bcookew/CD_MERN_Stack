@@ -10,9 +10,9 @@ function App() {
     setList([...list, {toDoItem: toDo, isComplete: false}]);
   }
   const completed = (checked, idx) => {
-    let temp = [...list];
+    let temp = [...list]
     temp[idx].isComplete=checked;
-    setList([...temp]);
+    setList(temp);
   }
   const clearCompleted = () => {
     setList(list.filter(item => item.isComplete === false));
