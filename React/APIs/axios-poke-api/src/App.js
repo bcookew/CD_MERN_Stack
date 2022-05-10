@@ -1,18 +1,18 @@
-import './App.css';
 import {useState} from 'react';
+import './App.css';
+import axios from 'axios';
 
 function App() {
   const [pokeList, setPokeList] = useState([]);
 
   const getPokes = () => {
-    fetch("https://pokeapi.co/api/v2/pokemon?limit=807")
-      .then(response => response.json())
-      .then(response => setPokeList(response.results))
+    axios.get("https://pokeapi.co/api/v2/pokemon?limit=807")
+      .then(response => setPokeList(response.data.results))
       .catch(err => console.log(err))
   };
   
   return (
-    <div className="App">
+<div className="App">
       <div className="container m-5 p-5">
         <div className="row justify-content-center m-5">
           <div className="col-3">
