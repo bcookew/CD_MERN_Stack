@@ -57,3 +57,41 @@ console.log(union([2,4,7,9,10],[2,3,5,7,9,10,-5]));
 console.log(union([2,3,5,7,9,10],[2,4,7,9,10]));
 console.log(union([1,2,2,2,7],[2,2,6,6,7]));
 console.log(union([1,5,9],[2,6,10]));
+
+
+// Instructor Solution
+
+const unionTwo = (arrLeft, arrRight) => {
+    let iLeft = 0;
+    let iRight = 0;
+    let newArr = [];
+
+    while(iLeft < arrLeft.length && iRight < arrRight.length){
+        if(arrLeft[iLeft] == arrRight[iRight]){
+            newArr.push(arrLeft[iLeft]);
+            ++iLeft;
+            ++iRight;
+        }
+        else if(arrLeft[iLeft] < arrRight[iRight]){
+            newArr.push(arrLeft[iLeft]);
+            ++iLeft;
+        }
+        else{
+            newArr.push(arrRight[iRight]);
+            ++iRight;
+        }
+    }
+
+    if(iLeft < arrLeft.length){
+        for(;iLeft < arrLeft.length; iLeft++)
+            newArr.push(arrLeft[iLeft]);
+    }
+    else if(iRight < arrRight.length){
+        for(;iRight < arrRight.length; iRight++)
+            newArr.push(arrRight[iRight]);
+    }
+
+    return newArr;
+}
+
+console.log(union([2,4,7,9,10,11,12,13],[2,3,5,7,9,10]));
