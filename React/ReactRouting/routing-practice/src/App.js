@@ -1,24 +1,45 @@
-import logo from './logo.svg';
 import './App.css';
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+  Link
+} from 'react-router-dom';
+
+import Number from './Components/Number';
+import Home from './Components/Home';
+import Location from './Components/Location';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <BrowserRouter>
+    <div className="container my-5 mx-auto p-5">
+      <div className="row m-5">
+        <div className="col">
+          <h1>Routing example</h1>
+          <p>
+            <Link to="/home">Home</Link>
+            &nbsp;|&nbsp;
+            <Link to="/location/seattle">Seattle</Link>
+            &nbsp;|&nbsp;
+            <Link to="/location/chicago">Chicago</Link>
+            &nbsp;|&nbsp;
+            <Link to="/location/burbank">Burbank</Link>
+          </p>
+        </div>
+      </div>
+      <div className="row m-5 justify-content-center">
+        <div className="col text-center">
+          <Switch>
+            <Route path="/home" children={Home} />
+            <Route path="/location/:city" component={Location} />
+            <Route path="/:data/:color?/:bgColor?" component={Number} />
+          </Switch>
+
+        </div>
+      </div>
     </div>
+    </BrowserRouter>
   );
 }
 
