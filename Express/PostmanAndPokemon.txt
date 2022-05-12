@@ -1,0 +1,14 @@
+Request 1
+pokeapi.co/api/v2/berry
+
+Request 2
+pokeapi.co/api/v2/berry/1
+
+Request 3
+pokeapi.co/api/v2/pokemon
+
+Request 4
+pokeapi.co/api/v2/contest-type
+
+Request 5
+pokeapi.co/api/v2/contest-type/1
