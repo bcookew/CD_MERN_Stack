@@ -2,7 +2,14 @@ import React, {useState} from 'react';
 import axios from 'axios';
 
 const ProductForm = props => {
-    const [formData, setFormData] = useState({});
+    
+    const resetForm = () => {return {
+        name: "",
+        price: "",
+        description: ""
+    } }
+
+    const [formData, setFormData] = useState(resetForm);    
 
     const onChangeHandler = e => {
         setFormData({...formData, [e.target.name]:e.target.value })
@@ -13,11 +20,16 @@ const ProductForm = props => {
         axios.post('http://localhost:8000/api/product/new', {
             ...formData
         })
-        .then(res => console.log(`
-        ----------------------        
+        .then(res => {
+            console.log(`
+        ------------------
         Request Succeeded!
-        ----------------------
-        `, res))
+        ------------------
+        `, res)
+            props.setProducts([...props.products, res.data])
+            console.log(e.target);
+            resetForm();
+        })
         .catch(err => console.log(`
         \/\/\/\/\/\/\/\/\/\/\/
         An error occurred!
@@ -29,18 +41,18 @@ const ProductForm = props => {
             <h1 className="display-3">Add New Product</h1>
             <form onSubmit={onSubmitHandler}>
                 <div className="form-floating mb-3">
-                    <input placeholder='text' className='form-control' type="text" name="name" onChange={(e) => onChangeHandler(e)} />
+                    <input placeholder='text' value={formData.name} className='form-control' type="text" name="name" onChange={(e) => onChangeHandler(e)} />
                     <label>Product Name</label>
                 </div>
                 <div className="form-floating mb-3">
-                    <input placeholder='text' className='form-control' type="number" min="0.01" step="0.01"  name="price" onChange={(e) => onChangeHandler(e)} />
+                    <input placeholder='text' value={formData.price} className='form-control' type="number" min="0.01" step="0.01"  name="price" onChange={(e) => onChangeHandler(e)} />
                     <label>Price</label>
                 </div>
                 <div className="form-floating mb-3">
-                    <input placeholder='text' className='form-control' type="text" name="description" onChange={(e) => onChangeHandler(e)} />
+                    <input placeholder='text' value={formData.description} className='form-control' type="text" name="description" onChange={(e) => onChangeHandler(e)} />
                     <label>Description</label>
                 </div>
-                <input type="submit" className='btn btn-info btn-lg' value="Add" />
+                <input type="submit" className='btn btn-success btn-lg' value="Add" />
             </form>
         </div>
     )
