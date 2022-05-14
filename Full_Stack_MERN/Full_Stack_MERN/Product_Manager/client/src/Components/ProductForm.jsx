@@ -9,7 +9,7 @@ const ProductForm = props => {
         description: ""
     } }
 
-    const [formData, setFormData] = useState(resetForm);    
+    const [formData, setFormData] = useState(props.form ? props.form : resetForm);    
 
     const onChangeHandler = e => {
         setFormData({...formData, [e.target.name]:e.target.value })
@@ -31,14 +31,14 @@ const ProductForm = props => {
             resetForm();
         })
         .catch(err => console.log(`
-        \/\/\/\/\/\/\/\/\/\/\/
+        //////////////////
         An error occurred!
-        /\/\/\/\/\/\/\/\/\/\/\\`
-        , err))
+        //////////////////
+        `, err))
     }
     return (
         <div className="col-6">
-            <h1 className="display-3">Add New Product</h1>
+            <h1 className="display-3 mb-5">Add New Product</h1>
             <form onSubmit={onSubmitHandler}>
                 <div className="form-floating mb-3">
                     <input placeholder='text' value={formData.name} className='form-control' type="text" name="name" onChange={(e) => onChangeHandler(e)} />

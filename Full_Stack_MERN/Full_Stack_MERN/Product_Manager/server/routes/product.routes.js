@@ -11,4 +11,9 @@ module.exports = (app) => {
     // ====================== POST Routes
     
     app.post('/api/product/new', ProductController.createProduct)
+
+    // ====================== PUT Routes
+
+    app.put('/api/products/:id', ProductController.updateProductById)
+    
 }

@@ -47,7 +47,13 @@ module.exports.getProductById = (req, res) => {
 // ############################  -- UPDATE --
 // #########################
 
+// ====================== Update Product by Id
 
+module.exports.updateProductById = (req, res) => {
+    Product.findOneAndUpdate({_id: req.params.id}, req.body, {new: true})
+        .then(updatedProduct => res.json(updatedProduct))
+        .catch(err => res.json(err))
+}
 
 
 // #########################

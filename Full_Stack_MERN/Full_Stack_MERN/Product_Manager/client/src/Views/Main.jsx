@@ -19,9 +19,9 @@ const Main = (props) => {
             setLoaded(true);
         })
         .catch(err => console.log(`
-        \/\/\/\/\/\/\/\/\/\/\/
+        /////////////////////
         Something went wrong!
-        /\/\/\/\/\/\/\/\/\/\/\
+        /////////////////////
 `,err))
     }, []);
 
