@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import {useParams, useNavigate} from 'react-router-dom';
+import { logMsg } from '../Accessories/LogFormatting';
 
 const Update = props => {
     const {id} = useParams();
@@ -26,18 +27,10 @@ const Update = props => {
             ...formData
         })
         .then(res => {
-            console.log(`
-        ------------------
-        Request Succeeded!
-        ------------------
-            `, res)
+            console.log(logMsg("Product Updated!", true), res)
             navigate(`/products/${formData._id}`)
         })
-        .catch(err => console.log(`
-        //////////////////
-        An error occurred!
-        //////////////////
-        `, err))
+        .catch(err => console.log(logMsg("Error Updating Product!"), err))
     }
     return (
         <div className="row justify-content-center">

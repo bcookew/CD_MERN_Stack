@@ -12,7 +12,7 @@ module.exports.index = (req, res) => {
 
 // ====================== Create new Product
 
-module.exports.createProduct = (req, res) => {
+module.exports.create = (req, res) => {
     const {name, price, description} = req.body;
     Product.create({
         name,
@@ -29,7 +29,7 @@ module.exports.createProduct = (req, res) => {
 
 // ====================== Get all Products
 
-module.exports.getAllProducts = (req, res) => {
+module.exports.getAll = (req, res) => {
     Product.find({})
         .then(products => res.json(products))
         .catch(err => res.json(err))
@@ -37,7 +37,7 @@ module.exports.getAllProducts = (req, res) => {
 
 // ====================== Get Product by Id
 
-module.exports.getProductById = (req, res) => {
+module.exports.getById = (req, res) => {
     Product.findOne({_id: req.params.id})
         .then(product => res.json(product))
         .catch(err => res.json(err))
@@ -49,13 +49,20 @@ module.exports.getProductById = (req, res) => {
 
 // ====================== Update Product by Id
 
-module.exports.updateProductById = (req, res) => {
+module.exports.updateById = (req, res) => {
     Product.findOneAndUpdate({_id: req.params.id}, req.body, {new: true})
         .then(updatedProduct => res.json(updatedProduct))
         .catch(err => res.json(err))
 }
 
-
 // #########################
 // ############################  -- DELETE --
 // #########################
+
+// ====================== Delete Product by Id
+
+module.exports.deleteById = (req, res) => {
+    Product.deleteOne({_id: req.params.id})
+        .then(confirmSuccess => res.json(confirmSuccess))
+        .catch(err => res.json(err))
+}

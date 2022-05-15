@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
+import { logMsg } from '../Accessories/LogFormatting';
 
 const ProductForm = props => {
     
@@ -21,20 +22,11 @@ const ProductForm = props => {
             ...formData
         })
         .then(res => {
-            console.log(`
-        ------------------
-        Request Succeeded!
-        ------------------
-        `, res)
+            console.log(logMsg("Product Added Successfully!", true), res)
             props.setProducts([...props.products, res.data])
-            console.log(e.target);
             resetForm();
         })
-        .catch(err => console.log(`
-        //////////////////
-        An error occurred!
-        //////////////////
-        `, err))
+        .catch(err => console.log(logMsg(), err))
     }
     return (
         <div className="col-6">
