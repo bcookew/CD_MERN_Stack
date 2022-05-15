@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
-import ProductForm from '../Components/ProductForm'
-import ProductList from '../Components/ProductList';
 import { logMsg } from '../Accessories/LogFormatting';
-
+import {Col, Container, Navbar, Row} from 'react-bootstrap';
+import { Outlet } from 'react-router-dom';
 const Main = (props) => {
     const [loaded, setLoaded] = useState(false);
     const [products, setProducts] = useState([]);
@@ -28,15 +27,19 @@ const Main = (props) => {
     }
 
     return (
-        <div className="row">
-            <div className="row justify-content-center mb-5">
-                <ProductForm products={products} setProducts={setProducts} />
-            </div>
-            <hr />
-            <div className="row justify-content-center">
-                {loaded ? <ProductList products={products} onDeleteHandler={onDeleteHandler} /> : <h2 className="display-3">Loading...</h2> }
-            </div>
-        </div>
+        <main>
+            <Navbar bg="light" expand="lg" className='mb-5'>
+                <Container>
+                    <Navbar.Brand>Authors!</Navbar.Brand>
+                    <Navbar.Brand>B C Williams | Dev</Navbar.Brand>
+                </Container>
+            </Navbar>
+            <Container>
+                <Row className='justify-content-center'>
+                    <Outlet />
+                </Row>
+            </Container>
+        </main>
         
 
     )
