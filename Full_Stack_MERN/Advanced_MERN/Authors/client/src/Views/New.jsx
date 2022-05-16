@@ -5,21 +5,15 @@ import AuthorForm from '../Components/AuthorForm';
 
 const New = props => {
     
-    const onSubmitHandler = e => {
-        e.preventDefault();
-
-        axios.post('http://localhost:8000/api/product/new', {
-            ...formData
-        })
+    const onSubmitHandler = (authorName) => {
+        axios.post('http://localhost:8000/api/authors/new', authorName)
         .then(res => {
-            console.log(logMsg("Product Added Successfully!", true), res)
-            props.setProducts([...props.products, res.data])
-            resetForm();
+            console.log(logMsg("Author Added Successfully!", true), res)
         })
-        .catch(err => console.log(logMsg(), err))
+        .catch(err => console.log(logMsg(), err, authorName))
     }
     return (
-        <AuthorForm onSubmitHandler={onSubmitHandler} />
+        <AuthorForm onSubmitHandler={onSubmitHandler} conText="Add" />
     )
 }
 

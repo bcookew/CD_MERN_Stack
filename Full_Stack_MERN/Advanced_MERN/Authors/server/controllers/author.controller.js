@@ -13,12 +13,9 @@ module.exports.index = (req, res) => {
 // ====================== Create new Author
 
 module.exports.create = (req, res) => {
-    const {name, price, description} = req.body;
-    Author.create({
-        name,
-        price,
-        description
-    })
+    console.log(req.body);
+    const {name} = req.body;
+    Author.create({name})
     .then(author => res.json(author))
     .catch(err => res.json(err))
 }
@@ -50,6 +47,7 @@ module.exports.getById = (req, res) => {
 // ====================== Update Author by Id
 
 module.exports.updateById = (req, res) => {
+    console.log(req.body);
     Author.findOneAndUpdate({_id: req.params.id}, req.body, {new: true})
         .then(updatedAuthor => res.json(updatedAuthor))
         .catch(err => res.json(err))

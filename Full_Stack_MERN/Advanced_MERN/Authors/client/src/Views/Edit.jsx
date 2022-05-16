@@ -2,66 +2,37 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import {useParams, useNavigate} from 'react-router-dom';
 import { logMsg } from '../Accessories/LogFormatting';
+import AuthorForm from '../Components/AuthorForm';
 
-const Update = props => {
+const Edit = props => {
     const {id} = useParams();
-    const [formData, setFormData] = useState();
+    const [author, setAuthor] = useState();
     const [loaded, setLoaded] = useState(false);
     const navigate = useNavigate();
     
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/products/${id}`)
+        axios.get(`http://localhost:8000/api/authors/${id}`)
             .then(res => {
-                setFormData(res.data)
-                setLoaded(true);
+                console.log(logMsg("GET Author by Id", true), res.data);
+                setAuthor(res.data);
+                setLoaded(true)
             })
-    }, []);
+            .catch(err => console.log(logMsg("Something went wrong GETting Author"), err))
 
-    const onChangeHandler = e => {
-        setFormData({...formData, [e.target.name]:e.target.value })
-    }
-    const onSubmitHandler = e => {
-        e.preventDefault();
-
-        axios.put(`http://localhost:8000/api/products/${formData._id}`, {
-            ...formData
-        })
+    }, [])
+    
+    const onSubmitHandler = authorName => {
+        console.log(authorName)
+        axios.put(`http://localhost:8000/api/authors/${author._id}`, authorName)
         .then(res => {
-            console.log(logMsg("Product Updated!", true), res)
-            navigate(`/products/${formData._id}`)
+            console.log(logMsg("Author Edited!", true), res)
+            navigate(`/`)
         })
-        .catch(err => console.log(logMsg("Error Updating Product!"), err))
+        .catch(err => console.log(logMsg("Error Updating Author!"), err))
     }
     return (
-        <div className="row justify-content-center">
-            <div className="col-6">
-                <h1 className="display-3 mb-5">Update Product</h1>
-                {!loaded ? <h1 className="m-5 display-3">Loading...</h1>
-                : <form onSubmit={onSubmitHandler}>
-                    <div className="form-floating mb-3">
-                        <input placeholder='text' value={formData.name} className='form-control' type="text" name="name" onChange={(e) => onChangeHandler(e)} />
-                        <label>Product Name</label>
-                    </div>
-                    <div className="form-floating mb-3">
-                        <input placeholder='text' value={formData.price} className='form-control' type="number" min="0.01" step="0.01"  name="price" onChange={(e) => onChangeHandler(e)} />
-                        <label>Price</label>
-                    </div>
-                    <div className="form-floating mb-3">
-                        <input placeholder='text' value={formData.description} className='form-control' type="text" name="description" onChange={(e) => onChangeHandler(e)} />
-                        <label>Description</label>
-                    </div>
-                    <div className="row justify-content-around mt-4">
-                        <div className="col-auto">
-                            <button className='btn btn-dark mb-2' onClick={()=>{navigate(-1)}}>Cancel</button>
-                        </div>
-                        <div className="col-auto">
-                            <input type="submit" className='btn btn-warning' value="Update" />
-                        </div>
-                    </div>
-                </form>}
-            </div>
-        </div>
+        !loaded ? <h1 className="display-3 text-danger">Loading...</h1> : author != null ? <AuthorForm authorName={author.name} onSubmitHandler={onSubmitHandler} conText="Edit" /> : <h1 className="display-3 text-danger">Unknown Author Id</h1>
     )
 }
 
-export default Update;
+export default Edit;
