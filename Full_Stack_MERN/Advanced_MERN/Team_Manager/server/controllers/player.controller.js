@@ -1,4 +1,4 @@
-const {Author} = require('../models/author.model');
+const {Player} = require('../models/player.model');
 
 module.exports.index = (req, res) => {
     res.json({
@@ -6,44 +6,52 @@ module.exports.index = (req, res) => {
     })
 }
 
-// ====================== Create new Author
+// ====================== Create new Player
 
 module.exports.create = (req, res) => {
     const {name} = req.body;
-    Author.create({name})
-    .then(author => res.json(author))
+    Player.create({name})
+    .then(player => res.json(player))
     .catch(err => res.status(400).json(err))
 }
 
-// ====================== Get all Products
+// ====================== Get all Players
 
 module.exports.getAll = (req, res) => {
-    Author.find({})
-        .then(products => res.json(products))
+    Player.find({})
+        .then(Players => res.json(Players))
         .catch(err => res.json(err))
 }
 
-// ====================== Get Author by Id
+// ====================== Get Player by Id
 
 module.exports.getById = (req, res) => {
-    Author.findOne({_id: req.params.id})
-        .then(author => res.json(author))
+    Player.findOne({_id: req.params.id})
+        .then(player => res.json(player))
         .catch(err => res.json(err))
 }
 
-// ====================== Update Author by Id
+// ====================== Update Player by Id
 
 module.exports.updateById = (req, res) => {
     console.log(req.body);
-    Author.findOneAndUpdate({_id: req.params.id}, req.body, {new: true})
-        .then(updatedAuthor => res.json(updatedAuthor))
+    Player.findOneAndUpdate({_id: req.params.id}, req.body, {new: true})
+        .then(updatedPlayer => res.json(updatedPlayer))
+        .catch(err => res.json(err))
+}
+// ====================== Add Game to Player by Id
+
+module.exports.updateById = (req, res) => {
+    console.log(req.body);
+    Player.findOneAndUpdate({_id: req.params.id}, req.body, {new: true})
+        .then(updatedPlayer => res.json(updatedPlayer))
         .catch(err => res.json(err))
 }
 
-// ====================== Delete Author by Id
+// ====================== Delete Player by Id
 
 module.exports.deleteById = (req, res) => {
-    Author.deleteOne({_id: req.params.id})
+    Player.deleteOne({_id: req.params.id})
         .then(confirmSuccess => res.json(confirmSuccess))
         .catch(err => res.json(err))
 }
