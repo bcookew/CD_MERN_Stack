@@ -54,6 +54,7 @@ module.exports.updateById = (req, res) => {
         .then(updatedProduct => res.json(updatedProduct))
         .catch(err => res.json(err))
 }
+// Look into .updateOne method. Check docs re Validations.
 
 // #########################
 // ############################  -- DELETE --

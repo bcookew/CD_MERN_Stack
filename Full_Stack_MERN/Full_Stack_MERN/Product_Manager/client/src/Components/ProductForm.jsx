@@ -24,7 +24,7 @@ const ProductForm = props => {
         .then(res => {
             console.log(logMsg("Product Added Successfully!", true), res)
             props.setProducts([...props.products, res.data])
-            resetForm();
+            setFormData(resetForm());
         })
         .catch(err => console.log(logMsg(), err))
     }
