@@ -17,6 +17,7 @@ const AuthorForm = props => {
             <Form onSubmit={onAddHandler}>
                 <FloatingLabel label="Author Name" className='mb-3'>
                     <Form.Control placeholder='text' value={authorName} className='form-control' type="text" name="name" onInput={(e) => setAuthorName(e.target.value)} />
+                    <span className="help-text text-danger">{props.errors && props.errors.name.properties.message }</span>
                 </FloatingLabel>
                 <Button variant='success' size='lg' type='submit'>{props.conText} Author</Button>
             </Form>

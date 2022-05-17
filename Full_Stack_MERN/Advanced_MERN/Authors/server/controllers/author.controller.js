@@ -6,23 +6,14 @@ module.exports.index = (req, res) => {
     })
 }
 
-// #########################
-// ############################  -- CREATE --
-// #########################
-
 // ====================== Create new Author
 
 module.exports.create = (req, res) => {
-    console.log(req.body);
     const {name} = req.body;
     Author.create({name})
     .then(author => res.json(author))
-    .catch(err => res.json(err))
+    .catch(err => res.status(400).json(err))
 }
-
-// #########################
-// ############################  -- READ --
-// #########################
 
 // ====================== Get all Products
 
@@ -40,10 +31,6 @@ module.exports.getById = (req, res) => {
         .catch(err => res.json(err))
 }
 
-// #########################
-// ############################  -- UPDATE --
-// #########################
-
 // ====================== Update Author by Id
 
 module.exports.updateById = (req, res) => {
@@ -52,10 +39,6 @@ module.exports.updateById = (req, res) => {
         .then(updatedAuthor => res.json(updatedAuthor))
         .catch(err => res.json(err))
 }
-
-// #########################
-// ############################  -- DELETE --
-// #########################
 
 // ====================== Delete Author by Id
 

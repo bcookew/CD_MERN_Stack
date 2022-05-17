@@ -13,7 +13,7 @@ const Edit = props => {
     useEffect(() => {
         axios.get(`http://localhost:8000/api/authors/${id}`)
             .then(res => {
-                console.log(logMsg("GET Author by Id", true), res.data);
+                console.log(logMsg("GET Author by Id", true));
                 setAuthor(res.data);
                 setLoaded(true)
             })
@@ -22,16 +22,19 @@ const Edit = props => {
     }, [])
     
     const onSubmitHandler = authorName => {
-        console.log(authorName)
         axios.put(`http://localhost:8000/api/authors/${author._id}`, authorName)
         .then(res => {
-            console.log(logMsg("Author Edited!", true), res)
+            console.log(logMsg("Author Edited!", true))
             navigate(`/`)
         })
         .catch(err => console.log(logMsg("Error Updating Author!"), err))
     }
     return (
-        !loaded ? <h1 className="display-3 text-danger">Loading...</h1> : author != null ? <AuthorForm authorName={author.name} onSubmitHandler={onSubmitHandler} conText="Edit" /> : <h1 className="display-3 text-danger">Unknown Author Id</h1>
+        !loaded 
+            ? <h1 className="display-3 text-danger">Loading...</h1> 
+            : author != null 
+                ? <AuthorForm authorName={author.name} onSubmitHandler={onSubmitHandler} conText="Edit" /> 
+                : <h1 className="display-3 text-danger">Unknown Author Id</h1>
     )
 }
 

@@ -1,9 +1,7 @@
-import React, {useEffect, useState} from 'react';
-import axios from 'axios';
-import { logMsg } from '../Accessories/LogFormatting';
-import {Col, Container, Nav, Navbar, Row} from 'react-bootstrap';
+import React from 'react';
+import { Container, Nav, Navbar, Row } from 'react-bootstrap';
 import { Link, Outlet } from 'react-router-dom';
-const Main = (props) => {
+const Main = ( props ) => {
     
 
     return (
@@ -12,8 +10,8 @@ const Main = (props) => {
                 <Container>
                     <Navbar.Brand>Authors!</Navbar.Brand>
                     <Nav>
-                        <Nav.Link><Link to='/'>Author List</Link></Nav.Link>
-                        <Nav.Link><Link to='/new'>New Author</Link></Nav.Link>
+                        <Link className='nav-link' to='/'>Author List</Link>
+                        <Link className='nav-link' to='/new'>New Author</Link>
                         <Navbar.Brand>B C Williams | Dev</Navbar.Brand>
                     </Nav>
                 </Container>
@@ -24,8 +22,6 @@ const Main = (props) => {
                 </Row>
             </Container>
         </main>
-        
-
     )
 }
 

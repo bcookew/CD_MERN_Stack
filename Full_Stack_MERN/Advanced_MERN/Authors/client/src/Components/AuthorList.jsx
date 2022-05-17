@@ -38,9 +38,13 @@ const AuthorList = props => {
                             <p className="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, maiores.</p>
                             <h5 className="card-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, maiores.</h5>
                         </div>
-                        <div className="card-footer px-0 d-flex justify-content-evenly">
-                            <Link className='btn btn-warning' style={widthThirds} to={`/edit/${author._id}`} >Edit</Link>
-                            <button className='btn btn-danger' style={widthThirds} onClick={(e, a=author) => onDeleteHandler(a._id)}>Delete</button>
+                        <div className="card-footer row row-cols-2 justify-content-evenly">
+                            <div className="col style={widthThirds}">
+                                <Link className='btn btn-warning w-100'  to={`/edit/${author._id}`} >Edit</Link>
+                            </div>
+                            <div className="col style={widthThirds}">
+                                <button className='btn btn-danger w-100'  onClick={(e, a=author) => onDeleteHandler(a._id)}>Delete</button>
+                            </div>
                         </div>
                     </div>
                 </div>
