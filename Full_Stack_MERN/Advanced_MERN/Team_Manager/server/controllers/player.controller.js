@@ -1,3 +1,4 @@
+const { logMsg } = require('../../client/src/Accessories/LogFormatting');
 const {Player} = require('../models/player.model');
 
 module.exports.index = (req, res) => {
@@ -9,8 +10,8 @@ module.exports.index = (req, res) => {
 // ====================== Create new Player
 
 module.exports.create = (req, res) => {
-    const {name} = req.body;
-    Player.create({name})
+    const {name, preferredPosi} = req.body;
+    Player.create({name, preferredPosi})
     .then(player => res.json(player))
     .catch(err => res.status(400).json(err))
 }
@@ -34,19 +35,13 @@ module.exports.getById = (req, res) => {
 // ====================== Update Player by Id
 
 module.exports.updateById = (req, res) => {
-    console.log(req.body);
     Player.findOneAndUpdate({_id: req.params.id}, req.body, {new: true})
-        .then(updatedPlayer => res.json(updatedPlayer))
-        .catch(err => res.json(err))
+        .then(updatedPlayer => {
+            res.json(updatedPlayer)
+        })
+        .catch(err => res.status(400).json(err))
 }
-// ====================== Add Game to Player by Id
 
-module.exports.updateById = (req, res) => {
-    console.log(req.body);
-    Player.findOneAndUpdate({_id: req.params.id}, req.body, {new: true})
-        .then(updatedPlayer => res.json(updatedPlayer))
-        .catch(err => res.json(err))
-}
 
 // ====================== Delete Player by Id
 

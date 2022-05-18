@@ -9,7 +9,7 @@ const NavHeader = props => {
                 <Navbar.Brand>Team Manager!</Navbar.Brand>
                 <Nav>
                     <Link className='nav-link' to='/players/list'>Player List</Link>
-                    <Link className='nav-link me-3' to='/new'>Games</Link>
+                    <Link className='nav-link me-3' to='/status/game'>Games</Link>
                     <Navbar.Brand>B C Williams | Dev</Navbar.Brand>
                 </Nav>
             </Container>
