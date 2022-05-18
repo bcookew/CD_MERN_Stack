@@ -1,18 +1,25 @@
 import './App.css';
-import Main from './Views/Main'
-import {Routes, Route} from 'react-router-dom';
-import New from './Views/New';
-import AuthorList from './Components/AuthorList';
-import Edit from './Views/Edit'
+import {Routes, Route, useNavigate} from 'react-router-dom';
 import Error from './Views/Error';
+import { useEffect } from 'react';
+import Main from './Views/Main';
+import Players from './Views/Players';
+import PlayerForm from './Components/PlayerForm';
 function App() {
+  const nav = useNavigate();
+  
+  useEffect(() => {
+    nav('/players/list');
+  }, [])
+
   return (
     <div className="App">
         <Routes>
-          <Route path='/' element={ <Main /> } > 
-            <Route index element={<AuthorList />} />
-            <Route path='new' element={<New />} />
-            <Route path='edit/:id' element={<Edit />} />
+          <Route path='/' element={ <Main /> } >
+            <Route path='players' element={ <Players /> }>
+              <Route path='list' />
+              <Route path='addplayer' element={ <PlayerForm /> } />
+            </Route>
             <Route path='*' element={ <Error /> } />
           </Route>
         </Routes>
