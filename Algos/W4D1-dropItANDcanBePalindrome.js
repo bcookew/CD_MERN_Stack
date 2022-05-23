@@ -86,18 +86,33 @@ function canStringBecomePalindrome(str) {
     if(str.length < 1) return false;
 
     let hash = {};
-    for(char of str){
+    for(const char of str){
         if(hash[char] === undefined) hash[char] = 1;
         else hash[char]++;
     }
     let numsOdd = 0;
-    for(val of Object.values(hash)){
+    for(const val of Object.values(hash)){
         if(val % 2 != 0) numsOdd++;
     }
     if(numsOdd > 1) return false;
     else if(numsOdd === 1 && str.length % 2 === 0) return false;
     else return true;
 }
+
+let variable = {
+    a: 1,
+    b:2
+}
+
+let var2 = ['a','b','c']
+
+const forOf =(arr) => {
+    for(iter of Object.values(arr)) {
+        console.log(iter)
+    }
+}
+
+forOf(variable)
 
 console.log(canStringBecomePalindrome(str1));
 console.log(canStringBecomePalindrome(str2));
